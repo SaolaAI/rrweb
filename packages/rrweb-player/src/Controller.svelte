@@ -45,7 +45,6 @@
     start: number;
     end: number;
   } | null = null;
-  $: updateProgressReqCount = 0;
   let meta: playerMetaData;
   $: meta = replayer.getMetaData();
   let percentage: string;
@@ -75,9 +74,7 @@
   }
 
   let customEvents: CustomEvent[];
-  $: customEvents = (() => {
-    updateProgressReqCount;
-
+  const buildCustomEvents = () => {
     const { context } = replayer.service.state;
     const totalEvents = context.events.length;
     const start = context.events[0].timestamp;
@@ -101,18 +98,11 @@
     });
 
     return customEvents;
-  })();
+  };
+  $: customEvents = buildCustomEvents();
 
-  let inactivePeriods: {
-    name: string;
-    background: string;
-    position: string;
-    width: string;
-  }[];
-  $: inactivePeriods = (() => {
+  const buildInactivePeriods = () => {
     try {
-      updateProgressReqCount;
-
       const { context } = replayer.service.state;
       const totalEvents = context.events.length;
       const start = context.events[0].timestamp;
@@ -140,7 +130,14 @@
       // For safety concern, if there is any error, the main function won't be affected.
       return [];
     }
-  })();
+  };
+  let inactivePeriods: {
+    name: string;
+    background: string;
+    position: string;
+    width: string;
+  }[];
+  $: inactivePeriods = buildInactivePeriods();
 
   const loopTimer = () => {
     stopTimer();
@@ -176,7 +173,8 @@
   };
 
   export const triggerUpdateProgress = () => {
-    updateProgressReqCount += 1;
+    customEvents = buildCustomEvents();
+    inactivePeriods = buildInactivePeriods();
   };
 
   export const toggle = () => {
