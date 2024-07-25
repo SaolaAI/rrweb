@@ -45,7 +45,7 @@
     start: number;
     end: number;
   } | null = null;
-
+  $: updateProgressReqCount = 0;
   let meta: playerMetaData;
   $: meta = replayer.getMetaData();
   let percentage: string;
@@ -76,6 +76,8 @@
 
   let customEvents: CustomEvent[];
   $: customEvents = (() => {
+    updateProgressReqCount;
+
     const { context } = replayer.service.state;
     const totalEvents = context.events.length;
     const start = context.events[0].timestamp;
@@ -109,6 +111,8 @@
   }[];
   $: inactivePeriods = (() => {
     try {
+      updateProgressReqCount;
+
       const { context } = replayer.service.state;
       const totalEvents = context.events.length;
       const start = context.events[0].timestamp;
@@ -169,6 +173,10 @@
       cancelAnimationFrame(timer);
       timer = null;
     }
+  };
+
+  export const triggerUpdateProgress = () => {
+    updateProgressReqCount += 1;
   };
 
   export const toggle = () => {
