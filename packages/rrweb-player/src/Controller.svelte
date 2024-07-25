@@ -101,6 +101,12 @@
   };
   $: customEvents = buildCustomEvents();
 
+  let inactivePeriods: {
+    name: string;
+    background: string;
+    position: string;
+    width: string;
+  }[];
   const buildInactivePeriods = () => {
     try {
       const { context } = replayer.service.state;
@@ -131,12 +137,6 @@
       return [];
     }
   };
-  let inactivePeriods: {
-    name: string;
-    background: string;
-    position: string;
-    width: string;
-  }[];
   $: inactivePeriods = buildInactivePeriods();
 
   const loopTimer = () => {
