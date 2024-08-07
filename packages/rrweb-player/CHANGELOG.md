@@ -1,5 +1,17 @@
 # rrweb-player
 
+## 3.0.0
+
+### Major Changes
+
+- Expose refreshProgress instead of triggering update on every addEvent
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/replay@2.0.1
+  - @saola.ai/rrweb-packer@2.0.1
+
 ## 2.0.3
 
 ### Patch Changes

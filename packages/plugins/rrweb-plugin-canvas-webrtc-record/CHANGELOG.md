@@ -1,5 +1,12 @@
 # @rrweb/rrweb-plugin-canvas-webrtc-record
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb@3.0.0
+
 ## 2.0.0
 
 ### Major Changes

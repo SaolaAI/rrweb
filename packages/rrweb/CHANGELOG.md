@@ -1,5 +1,14 @@
 # rrweb
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@3.0.0
+  - @saola.ai/rrdom@3.0.0
+  - @saola.ai/rrweb-types@3.0.0
+
 ## 2.0.3
 
 ### Patch Changes
