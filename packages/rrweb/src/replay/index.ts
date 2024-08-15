@@ -525,7 +525,7 @@ export class Replayer {
     if (fromProgress) {
       this.emitter.emit(ReplayerEvents.GotoStarted);
 
-      // inside an immediate callback in order to release the thread, in order to allow the UI to render a loader
+      // inside an immediate callback in order to release the thread, so the UI can render a loader
       setTimeout(() => {
         performPlay();
       }, 0);
