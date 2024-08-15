@@ -534,12 +534,12 @@ export class Replayer {
     }
   }
 
-  public pause(timeOffset?: number, fromGoto = false) {
+  public pause(timeOffset?: number, fromProgress = false) {
     if (timeOffset === undefined && this.service.state.matches('playing')) {
       this.service.send({ type: 'PAUSE' });
     }
     if (typeof timeOffset === 'number') {
-      this.play(timeOffset, fromGoto);
+      this.play(timeOffset, fromProgress);
       this.service.send({ type: 'PAUSE' });
     }
     this.iframe.contentDocument
