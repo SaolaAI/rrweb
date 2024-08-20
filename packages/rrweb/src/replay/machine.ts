@@ -21,6 +21,7 @@ export type PlayerEvent =
       type: 'PLAY';
       payload: {
         timeOffset: number;
+        fromProgress: boolean;
       };
     }
   | {
@@ -163,56 +164,71 @@ export function createPlayerService(
             baselineTime: ctx.events[0].timestamp + timeOffset,
           };
         }),
-        play(ctx) {
+        play(ctx, event) {
+          const performPlay = () => {
+            for (const event of events) {
+              // TODO: improve this API
+              addDelay(event, baselineTime);
+            }
+            const neededEvents = discardPriorSnapshots(events, baselineTime);
+
+            let lastPlayedTimestamp = lastPlayedEvent?.timestamp;
+            if (
+              lastPlayedEvent?.type === EventType.IncrementalSnapshot &&
+              lastPlayedEvent.data.source === IncrementalSource.MouseMove
+            ) {
+              lastPlayedTimestamp =
+                lastPlayedEvent.timestamp +
+                lastPlayedEvent.data.positions[0]?.timeOffset;
+            }
+            if (baselineTime < (lastPlayedTimestamp || 0)) {
+              emitter.emit(ReplayerEvents.PlayBack);
+            }
+
+            const syncEvents = new Array<eventWithTime>();
+            for (const event of neededEvents) {
+              if (
+                lastPlayedTimestamp &&
+                lastPlayedTimestamp < baselineTime &&
+                (event.timestamp <= lastPlayedTimestamp ||
+                  event === lastPlayedEvent)
+              ) {
+                continue;
+              }
+              if (event.timestamp < baselineTime) {
+                syncEvents.push(event);
+              } else {
+                const castFn = getCastFn(event, false);
+                timer.addAction({
+                  doAction: () => {
+                    castFn();
+                  },
+                  delay: event.delay!,
+                });
+              }
+            }
+            applyEventsSynchronously(syncEvents);
+            emitter.emit(ReplayerEvents.EventsApplied);
+            emitter.emit(ReplayerEvents.Flush);
+
+            timer.start();
+          };
+
           const { timer, events, baselineTime, lastPlayedEvent } = ctx;
           timer.clear();
 
-          for (const event of events) {
-            // TODO: improve this API
-            addDelay(event, baselineTime);
-          }
-          const neededEvents = discardPriorSnapshots(events, baselineTime);
-
-          let lastPlayedTimestamp = lastPlayedEvent?.timestamp;
-          if (
-            lastPlayedEvent?.type === EventType.IncrementalSnapshot &&
-            lastPlayedEvent.data.source === IncrementalSource.MouseMove
-          ) {
-            lastPlayedTimestamp =
-              lastPlayedEvent.timestamp +
-              lastPlayedEvent.data.positions[0]?.timeOffset;
-          }
-          if (baselineTime < (lastPlayedTimestamp || 0)) {
-            emitter.emit(ReplayerEvents.PlayBack);
+          const playerEvent = event as PlayerEvent;
+          let fromProgress = false;
+          if (playerEvent.type === 'PLAY') {
+            fromProgress = playerEvent.payload.fromProgress;
           }
 
-          const syncEvents = new Array<eventWithTime>();
-          for (const event of neededEvents) {
-            if (
-              lastPlayedTimestamp &&
-              lastPlayedTimestamp < baselineTime &&
-              (event.timestamp <= lastPlayedTimestamp ||
-                event === lastPlayedEvent)
-            ) {
-              continue;
-            }
-            if (event.timestamp < baselineTime) {
-              syncEvents.push(event);
-            } else {
-              const castFn = getCastFn(event, false);
-              timer.addAction({
-                doAction: () => {
-                  castFn();
-                },
-                delay: event.delay!,
-              });
-            }
+          if (fromProgress) {
+            // inside an immediate callback in order to release the thread, so the UI can render a loader
+            setTimeout(performPlay, 0);
+          } else {
+            performPlay();
           }
-          applyEventsSynchronously(syncEvents);
-          emitter.emit(ReplayerEvents.EventsApplied);
-          emitter.emit(ReplayerEvents.Flush);
-
-          timer.start();
         },
         pause(ctx) {
           ctx.timer.clear();
