@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [DEV-1029] Stop timer before delaying seek on progress bar clicks
+- [DEV-1029] Fix for delaying play / pause goto on progress bar clicks
 
 ## 2.0.5
 
