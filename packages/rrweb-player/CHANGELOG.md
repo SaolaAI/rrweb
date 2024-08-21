@@ -1,5 +1,11 @@
 # rrweb-player
 
+## 2.0.6
+
+### Patch Changes
+
+- [DEV-1029] Stop timer before delaying seek on progress bar clicks
+
 ## 2.0.5
 
 ### Patch Changes
