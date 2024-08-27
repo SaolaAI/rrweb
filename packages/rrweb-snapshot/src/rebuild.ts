@@ -138,7 +138,6 @@ export function adaptCssForReplay(
       return media.replace(MEDIA_SELECTOR_GLOBAL, '$1-$2');
     });
   }
-  console.log('Before removing animation', removeAnimationCss);
   if (removeAnimationCss) result = result.replace(/animation.+?;/g, '');
   cache?.stylesWithHoverClass.set(cssText, result);
   return result;
