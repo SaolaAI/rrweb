@@ -213,6 +213,8 @@
   });
 
   onDestroy(() => {
+    // This is never called, at least the way we use it in React.
+    // exposed a destroy() function which does the same and can be explicitly called.
     fullscreenListener && fullscreenListener();
   });
 </script>
