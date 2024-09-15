@@ -87,6 +87,10 @@
     });
   };
 
+  export const destroy: RRwebPlayerExpose['destroy'] = () => {
+    fullscreenListener && fullscreenListener();
+  };
+
   export const toggleFullscreen: RRwebPlayerExpose['toggleFullscreen'] = () => {
     if (player) {
       isFullscreen() ? exitFullscreen() : openFullscreen(player);
