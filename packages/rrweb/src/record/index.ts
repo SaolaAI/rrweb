@@ -3,7 +3,7 @@ import {
   type MaskInputOptions,
   type SlimDOMOptions,
   createMirror,
-} from 'rrweb-snapshot';
+} from '@saola.ai/rrweb-snapshot';
 import { initObservers, mutationBuffers } from './observer';
 import {
   on,
@@ -27,7 +27,7 @@ import {
   type scrollCallback,
   type canvasMutationParam,
   type adoptedStyleSheetParam,
-} from '@rrweb/types';
+} from '@saola.ai/rrweb-types';
 import type { CrossOriginIframeMessageEventContent } from '../types';
 import { IframeManager } from './iframe-manager';
 import { ShadowDomManager } from './shadow-dom-manager';

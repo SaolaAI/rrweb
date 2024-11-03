@@ -3,7 +3,7 @@ import type {
   Mirror,
   INode,
   DataURLOptions,
-} from 'rrweb-snapshot';
+} from '@saola.ai/rrweb-snapshot';
 
 export enum EventType {
   DomContentLoaded,
@@ -678,6 +678,8 @@ export enum ReplayerEvents {
   StateChange = 'state-change',
   PlayBack = 'play-back',
   Destroy = 'destroy',
+  GotoStarted = 'goto-started',
+  EventsApplied = 'events-applied',
 }
 
 export type KeepIframeSrcFn = (src: string) => boolean;
@@ -705,6 +707,6 @@ export type TakeTypedKeyValues<Obj extends object, Type> = Pick<
   TakeTypeHelper<Obj, Type>[keyof TakeTypeHelper<Obj, Type>]
 >;
 
-// Types for @rrweb/packer
+// Types for @saola.ai/rrweb-packer
 export type PackFn = (event: eventWithTime) => string;
 export type UnpackFn = (raw: string) => eventWithTime;

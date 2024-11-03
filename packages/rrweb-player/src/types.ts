@@ -1,6 +1,6 @@
-import type { eventWithTime } from '@rrweb/types';
-import type { Replayer, playerConfig } from '@rrweb/replay';
-import type { Mirror } from 'rrweb-snapshot';
+import type { eventWithTime } from '@saola.ai/rrweb-types';
+import type { Replayer, playerConfig } from '@saola.ai/replay';
+import type { Mirror } from '@saola.ai/rrweb-snapshot';
 
 export type RRwebPlayerOptions = {
   target: HTMLElement;
@@ -74,6 +74,14 @@ export type RRwebPlayerExpose = {
   toggleFullscreen: () => void;
   triggerResize: () => void;
   $set: (options: { width: number; height: number }) => void;
+  setDims: (width: number, height: number) => void;
+  setDimsAndScale: (width: number, height: number) => void;
+  refreshProgress: () => void;
+  updatePlayRanges: (
+    rangeStart: number | undefined,
+    rangeEnd: number | undefined,
+  ) => void;
+  destroy: () => void;
   play: () => void;
   pause: () => void;
   goto: (timeOffset: number, play?: boolean) => void;

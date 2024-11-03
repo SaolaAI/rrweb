@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { NodeType as RRNodeType } from 'rrweb-snapshot';
+import { NodeType as RRNodeType } from '@saola.ai/rrweb-snapshot';
 import type { NWSAPI } from 'nwsapi';
 import type { CSSStyleDeclaration as CSSStyleDeclarationType } from 'cssstyle';
 import {
@@ -14,7 +14,7 @@ import {
   ClassList,
   type IRRDocument,
   type CSSStyleDeclaration,
-} from 'rrdom';
+} from '@saola.ai/rrdom';
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
 const nwsapi = require('nwsapi');
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires

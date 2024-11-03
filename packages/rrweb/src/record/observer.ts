@@ -4,7 +4,7 @@ import {
   Mirror,
   getInputType,
   toLowerCase,
-} from 'rrweb-snapshot';
+} from '@saola.ai/rrweb-snapshot';
 import type { FontFaceSet } from 'css-font-loading-module';
 import {
   throttle,
@@ -25,7 +25,7 @@ import {
   MouseInteractions,
   PointerTypes,
   MediaInteractions,
-} from '@rrweb/types';
+} from '@saola.ai/rrweb-types';
 import type {
   mutationCallBack,
   mousemoveCallBack,
@@ -49,7 +49,7 @@ import type {
   SelectionRange,
   selectionCallback,
   customElementCallback,
-} from '@rrweb/types';
+} from '@saola.ai/rrweb-types';
 import MutationBuffer from './mutation';
 import { callbackWrapper } from './error-handler';
 import dom, { mutationObserverCtor } from '@rrweb/utils';

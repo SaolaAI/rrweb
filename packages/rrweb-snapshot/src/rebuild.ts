@@ -60,7 +60,11 @@ function getTagName(n: elementNode): string {
   return tagName;
 }
 
-export function adaptCssForReplay(cssText: string, cache: BuildCache): string {
+export function adaptCssForReplay(
+  cssText: string,
+  cache: BuildCache,
+  removeAnimationCss = false,
+): string {
   const cachedStyle = cache?.stylesWithHoverClass.get(cssText);
   if (cachedStyle) return cachedStyle;
 
@@ -68,7 +72,8 @@ export function adaptCssForReplay(cssText: string, cache: BuildCache): string {
     mediaSelectorPlugin,
     pseudoClassPlugin,
   ]).process(cssText);
-  const result = ast.css;
+  let result = ast.css;
+  if (removeAnimationCss) result = result.replace(/animation.+?;/g, '');
   cache?.stylesWithHoverClass.set(cssText, result);
   return result;
 }
@@ -89,6 +94,7 @@ export function applyCssSplits(
   cssText: string,
   hackCss: boolean,
   cache: BuildCache,
+  removeAnimationCss: boolean,
 ): void {
   const childTextNodes: serializedTextNodeWithId[] = [];
   for (const scn of n.childNodes) {
@@ -111,7 +117,7 @@ export function applyCssSplits(
       // id will be assigned when these child nodes are
       // iterated over in buildNodeWithSN
       childTextNode.textContent = hackCss
-        ? adaptCssForReplay(cssTextSection, cache)
+        ? adaptCssForReplay(cssTextSection, cache, removeAnimationCss)
         : cssTextSection;
     }
   }
@@ -134,14 +140,15 @@ export function buildStyleNode(
     doc: Document;
     hackCss: boolean;
     cache: BuildCache;
+    removeAnimationCss: boolean;
   },
 ) {
-  const { doc, hackCss, cache } = options;
+  const { doc, hackCss, cache, removeAnimationCss } = options;
   if (n.childNodes.length) {
-    applyCssSplits(n, cssText, hackCss, cache);
+    applyCssSplits(n, cssText, hackCss, cache, removeAnimationCss);
   } else {
     if (hackCss) {
-      cssText = adaptCssForReplay(cssText, cache);
+      cssText = adaptCssForReplay(cssText, cache, removeAnimationCss);
     }
     /**
        <link> element or dynamic <style> are serialized without any child nodes
@@ -157,6 +164,7 @@ function buildNode(
     doc: Document;
     hackCss: boolean;
     cache: BuildCache;
+    removeAnimationCss: boolean;
   },
 ): Node | null {
   const { doc, hackCss, cache } = options;
@@ -416,6 +424,7 @@ export function buildNodeWithSN(
      */
     afterAppend?: (n: Node, id: number) => unknown;
     cache: BuildCache;
+    removeAnimationCss: boolean;
   },
 ): Node | null {
   const {
@@ -425,6 +434,7 @@ export function buildNodeWithSN(
     hackCss = true,
     afterAppend,
     cache,
+    removeAnimationCss,
   } = options;
   /**
    * Add a check to see if the node is already in the mirror. If it is, we can skip the whole process.
@@ -439,7 +449,7 @@ export function buildNodeWithSN(
     // For safety concern, check if the node in mirror is the same as the node we are trying to build
     if (isNodeMetaEqual(meta, n)) return mirror.getNode(n.id);
   }
-  let node = buildNode(n, { doc, hackCss, cache });
+  let node = buildNode(n, { doc, hackCss, cache, removeAnimationCss });
   if (!node) {
     return null;
   }
@@ -491,6 +501,7 @@ export function buildNodeWithSN(
         hackCss,
         afterAppend,
         cache,
+        removeAnimationCss,
       });
       if (!childNode) {
         console.warn('Failed to rebuild', childN);
@@ -580,6 +591,7 @@ function rebuild(
     afterAppend?: (n: Node, id: number) => unknown;
     cache: BuildCache;
     mirror: Mirror;
+    removeAnimationCss: boolean;
   },
 ): Node | null {
   const {
@@ -589,6 +601,7 @@ function rebuild(
     afterAppend,
     cache,
     mirror = new Mirror(),
+    removeAnimationCss,
   } = options;
   const node = buildNodeWithSN(n, {
     doc,
@@ -597,6 +610,7 @@ function rebuild(
     hackCss,
     afterAppend,
     cache,
+    removeAnimationCss,
   });
   visit(mirror, (visitedNode) => {
     if (onVisit) {

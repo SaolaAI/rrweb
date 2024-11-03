@@ -1,6 +1,6 @@
 import Browser, { type Storage } from 'webextension-polyfill';
 import { nanoid } from 'nanoid';
-import type { eventWithTime } from '@rrweb/types';
+import type { eventWithTime } from '@saola.ai/rrweb-types';
 import {
   type LocalData,
   LocalDataKey,

@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { EventType } from '@rrweb/types';
-  import type { playerMetaData } from '@rrweb/types';
+  import { EventType } from '@saola.ai/rrweb-types';
+  import type { playerMetaData } from '@saola.ai/rrweb-types';
   import type {
     Replayer,
     PlayerMachineState,
     SpeedMachineState,
-  } from '@rrweb/replay';
+  } from '@saola.ai/replay';
   import {
     onMount,
     onDestroy,
@@ -45,7 +45,6 @@
     start: number;
     end: number;
   } | null = null;
-
   let meta: playerMetaData;
   $: meta = replayer.getMetaData();
   let percentage: string;
@@ -75,7 +74,7 @@
   }
 
   let customEvents: CustomEvent[];
-  $: customEvents = (() => {
+  const buildCustomEvents = () => {
     const { context } = replayer.service.state;
     const totalEvents = context.events.length;
     const start = context.events[0].timestamp;
@@ -88,18 +87,22 @@
        * we are only interested in custom event and calculate it's position
        * to place it in player's timeline.
        */
+      if (context.rangeStart && event.timestamp < context.rangeStart || context.rangeEnd && event.timestamp > context.rangeEnd) {
+        return;
+      } 
       if (event.type === EventType.Custom) {
         const customEvent = {
           name: event.data.tag,
           background: tags[event.data.tag] || 'rgb(73, 80, 246)',
-          position: `${position(start, end, event.timestamp)}%`,
+          position: `${position(context.rangeStart || start, context.rangeEnd || end, event.timestamp)}%`,
         };
         customEvents.push(customEvent);
       }
     });
 
     return customEvents;
-  })();
+  };
+  $: customEvents = buildCustomEvents();
 
   let inactivePeriods: {
     name: string;
@@ -107,9 +110,12 @@
     position: string;
     width: string;
   }[];
-  $: inactivePeriods = (() => {
+  const buildInactivePeriods = () => {
     try {
       const { context } = replayer.service.state;
+      if (context.rangeStart || context.rangeEnd) {
+        return [];
+      }
       const totalEvents = context.events.length;
       const start = context.events[0].timestamp;
       const end = context.events[totalEvents - 1].timestamp;
@@ -136,7 +142,8 @@
       // For safety concern, if there is any error, the main function won't be affected.
       return [];
     }
-  })();
+  };
+  $: inactivePeriods = buildInactivePeriods();
 
   const loopTimer = () => {
     stopTimer();
@@ -169,6 +176,13 @@
       cancelAnimationFrame(timer);
       timer = null;
     }
+  };
+
+  export const triggerUpdateProgress = () => {
+    return Promise.resolve().then(() => {
+      customEvents = buildCustomEvents();
+      inactivePeriods = buildInactivePeriods();
+    });
   };
 
   export const toggle = () => {
@@ -204,17 +218,14 @@
     pauseAt = false;
   };
 
-  export const goto = (timeOffset: number, play?: boolean) => {
+  export const goto = (timeOffset: number, play?: boolean, fromProgress = false) => {
     currentTime = timeOffset;
     pauseAt = false;
     finished = false;
     const resumePlaying =
       typeof play === 'boolean' ? play : playerState === 'playing';
-    if (resumePlaying) {
-      replayer.play(timeOffset);
-    } else {
-      replayer.pause(timeOffset);
-    }
+
+    replayer.handleGoto(timeOffset, resumePlaying, fromProgress)
   };
 
   export const playRange = (
@@ -250,7 +261,7 @@
       percent = 1;
     }
     const timeOffset = meta.totalTime * percent;
-    goto(timeOffset);
+    goto(timeOffset, undefined, true);
   };
 
   const handleProgressKeydown = (event: KeyboardEvent) => { 
@@ -280,9 +291,13 @@
     skipInactive = !skipInactive;
   };
 
-  export const triggerUpdateMeta = () => {
+  export const triggerUpdateMeta = (rangeStart?: number, rangeEnd?: number) => {
     return Promise.resolve().then(() => {
-      meta = replayer.getMetaData();
+      if (rangeStart && rangeEnd) {
+        currentTime = 0;
+      } 
+
+      meta = replayer.getMetaData(rangeStart, rangeEnd);
     });
   };
 
@@ -433,6 +448,7 @@
   <div class="rr-controller">
     <div class="rr-timeline">
       <span class="rr-timeline__time">{formatTime(currentTime)}</span>
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div
         class="rr-progress"
         class:disabled={speedState === 'skipping'}

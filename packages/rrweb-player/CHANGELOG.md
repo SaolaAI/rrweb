@@ -9,6 +9,69 @@
   - @rrweb/replay@2.0.0-alpha.17
 
 ## 2.0.0-alpha.16
+## 2.0.12
+
+### Patch Changes
+
+- [DEV-1066] Test editor select timestamp (Range editing)
+
+## 2.0.11
+
+## 2.0.10
+
+### Patch Changes
+
+- [DEV-1039] Expose destroy() function for Svelte player
+
+## 2.0.9
+
+## 2.0.8
+
+## 2.0.7
+
+## 2.0.6
+
+### Patch Changes
+
+- [DEV-1029] Fix for delaying play / pause goto on progress bar clicks
+
+## 2.0.5
+
+### Patch Changes
+
+- [DEV-889] Player - Add loader/indication while seeking
+
+## 2.0.4
+
+### Patch Changes
+
+- Expose refreshProgress instead of triggering update on every addEvent
+
+## 2.0.3
+
+### Patch Changes
+
+- Trigger progress bar updates (custom events and inactive periods) on async add event
+
+## 2.0.2
+
+### Patch Changes
+
+- added setDims and setDimsAndScale
+
+## 2.0.1
+
+## 2.0.0
+
+### Major Changes
+
+- Saola AI
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-packer@2.0.0
+  - @saola.ai/replay@2.0.0
 
 ## 2.0.0-alpha.15
 

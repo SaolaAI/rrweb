@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
-  import { Replayer } from '@rrweb/replay';
-  import { unpack } from '@rrweb/packer/unpack';
-  import type { eventWithTime } from '@rrweb/types';
+  import { Replayer } from '@saola.ai/replay';
+  import { unpack } from '@saola.ai/rrweb-packer/unpack';
+  import type { eventWithTime } from '@saola.ai/rrweb-types';
   import {
     inlineCss,
     openFullscreen,
@@ -73,6 +73,24 @@
     });
   };
 
+  export const setDims: RRwebPlayerExpose['setDims'] = (iWidth: number, iHeight: number) => {  
+    width = iWidth;
+    height = iHeight;
+  };
+
+  export const setDimsAndScale: RRwebPlayerExpose['setDimsAndScale'] = (iWidth: number, iHeight: number) => {  
+    width = iWidth;
+    height = iHeight;
+    updateScale(replayer.wrapper, {
+      width: replayer.iframe.offsetWidth,
+      height: replayer.iframe.offsetHeight,
+    });
+  };
+
+  export const destroy: RRwebPlayerExpose['destroy'] = () => {
+    fullscreenListener && fullscreenListener();
+  };
+
   export const toggleFullscreen: RRwebPlayerExpose['toggleFullscreen'] = () => {
     if (player) {
       isFullscreen() ? exitFullscreen() : openFullscreen(player);
@@ -97,7 +115,18 @@
   export const addEvent: RRwebPlayerExpose['addEvent'] = (event: eventWithTime) => {
     replayer.addEvent(event);
     controller.triggerUpdateMeta();
+    
   };
+
+  export const updatePlayRanges: RRwebPlayerExpose['updatePlayRanges'] = async (rangeStart: number | undefined, rangeEnd: number | undefined) => {
+    await controller.triggerUpdateMeta(rangeStart, rangeEnd);
+    controller.triggerUpdateProgress();
+  };
+
+  export const refreshProgress: RRwebPlayerExpose["refreshProgress"] = () => {
+    controller.triggerUpdateProgress();
+  }
+  
   export const getMetaData: RRwebPlayerExpose['getMetaData'] = () => replayer.getMetaData();
   export const getReplayer: RRwebPlayerExpose['getReplayer'] = () => replayer;
 
@@ -190,12 +219,14 @@
   });
 
   onDestroy(() => {
+    // This is never called, at least the way we use it in React.
+    // exposed a destroy() function which does the same and can be explicitly called.
     fullscreenListener && fullscreenListener();
   });
 </script>
 
 <style global>
-  @import '@rrweb/replay/dist/style.css';
+  @import '@saola.ai/replay/dist/style.css';
 
   .rr-player {
     position: relative;

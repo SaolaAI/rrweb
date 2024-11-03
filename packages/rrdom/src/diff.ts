@@ -2,7 +2,7 @@ import {
   NodeType as RRNodeType,
   Mirror as NodeMirror,
   type elementNode,
-} from 'rrweb-snapshot';
+} from '@saola.ai/rrweb-snapshot';
 import type {
   canvasMutationData,
   canvasEventWithTime,
@@ -10,7 +10,7 @@ import type {
   scrollData,
   styleDeclarationData,
   styleSheetRuleData,
-} from '@rrweb/types';
+} from '@saola.ai/rrweb-types';
 import type {
   IRRCDATASection,
   IRRComment,

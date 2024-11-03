@@ -34,6 +34,142 @@
   - rrweb-snapshot@2.0.0-alpha.16
   - rrdom@2.0.0-alpha.16
   - @rrweb/types@2.0.0-alpha.16
+## 2.0.12
+
+### Patch Changes
+
+- [DEV-1066] Test editor select timestamp (Range editing)
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.12
+  - @saola.ai/rrdom@2.0.12
+  - @saola.ai/rrweb-types@2.0.12
+
+## 2.0.11
+
+### Patch Changes
+
+- Fix player destroy function to not affect the DOM
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.11
+  - @saola.ai/rrdom@2.0.11
+  - @saola.ai/rrweb-types@2.0.11
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.10
+  - @saola.ai/rrdom@2.0.10
+  - @saola.ai/rrweb-types@2.0.10
+
+## 2.0.9
+
+### Patch Changes
+
+- [DEV-1044] Return the emitting of ReplayerEvents.Start
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.9
+  - @saola.ai/rrdom@2.0.9
+  - @saola.ai/rrweb-types@2.0.9
+
+## 2.0.8
+
+### Patch Changes
+
+- [DEV-1035] Remove animation CSS as a config
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.8
+  - @saola.ai/rrdom@2.0.8
+  - @saola.ai/rrweb-types@2.0.8
+
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.7
+  - @saola.ai/rrdom@2.0.7
+  - @saola.ai/rrweb-types@2.0.7
+
+## 2.0.6
+
+### Patch Changes
+
+- [DEV-1029] Fix for delaying play / pause goto on progress bar clicks
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.6
+  - @saola.ai/rrdom@2.0.6
+  - @saola.ai/rrweb-types@2.0.6
+
+## 2.0.5
+
+### Patch Changes
+
+- [DEV-889] Player - Add loader/indication while seeking
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-types@2.0.5
+  - @saola.ai/rrweb-snapshot@2.0.5
+  - @saola.ai/rrdom@2.0.5
+
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.4
+  - @saola.ai/rrdom@2.0.4
+  - @saola.ai/rrweb-types@2.0.4
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.3
+  - @saola.ai/rrdom@2.0.3
+  - @saola.ai/rrweb-types@2.0.3
+
+## 2.0.2
+
+### Patch Changes
+
+- added setDims and setDimsAndScale
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.2
+  - @saola.ai/rrdom@2.0.2
+  - @saola.ai/rrweb-types@2.0.2
+
+## 2.0.1
+
+### Patch Changes
+
+- Saola AI
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.1
+  - @saola.ai/rrdom@2.0.1
+  - @saola.ai/rrweb-types@2.0.1
+
+## 2.0.0
+
+### Major Changes
+
+- Saola AI
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrdom@2.0.0
+  - @saola.ai/rrweb-snapshot@2.0.0
+  - @saola.ai/rrweb-types@2.0.0
 
 ## 2.0.0-alpha.15
 

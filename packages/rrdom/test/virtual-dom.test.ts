@@ -17,7 +17,7 @@ import {
   NodeType,
   NodeType as RRNodeType,
   textNode,
-} from 'rrweb-snapshot';
+} from '@saola.ai/rrweb-snapshot';
 import {
   buildFromDom,
   buildFromNode,

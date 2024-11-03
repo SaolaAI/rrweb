@@ -1,11 +1,14 @@
-import type { elementNode, serializedNodeWithId } from 'rrweb-snapshot';
-import { stringifyRule } from 'rrweb-snapshot';
+import type {
+  elementNode,
+  serializedNodeWithId,
+} from '@saola.ai/rrweb-snapshot';
+import { stringifyRule } from '@saola.ai/rrweb-snapshot';
 import type {
   adoptedStyleSheetCallback,
   adoptedStyleSheetParam,
   attributeMutation,
   mutationCallBack,
-} from '@rrweb/types';
+} from '@saola.ai/rrweb-types';
 import { StyleSheetMirror } from '../utils';
 
 export class StylesheetManager {

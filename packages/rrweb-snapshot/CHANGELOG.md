@@ -21,6 +21,47 @@
 - [#1386](https://github.com/rrweb-io/rrweb/pull/1386) [`a2c8a1a`](https://github.com/rrweb-io/rrweb/commit/a2c8a1a37bfcf8389b280af792262c8263a979a3) Thanks [@ababik](https://github.com/ababik)! - Fix that the optional `maskInputFn` was being accidentally ignored during the creation of the full snapshot
 
 - [#1512](https://github.com/rrweb-io/rrweb/pull/1512) [`d08624c`](https://github.com/rrweb-io/rrweb/commit/d08624cb28add386c3618a0e6607424c3f1884d8) Thanks [@eoghanmurray](https://github.com/eoghanmurray)! - optimisation: skip mask check on leaf elements
+## 2.0.12
+
+## 2.0.11
+
+## 2.0.10
+
+## 2.0.9
+
+## 2.0.8
+
+### Patch Changes
+
+- [DEV-1035] Remove animation CSS as a config
+
+## 2.0.7
+
+### Patch Changes
+
+- [DEV-1026] Remove animation css in snapshot rebuild
+
+## 2.0.6
+
+## 2.0.5
+
+## 2.0.4
+
+## 2.0.3
+
+## 2.0.2
+
+### Patch Changes
+
+- added setDims and setDimsAndScale
+
+## 2.0.1
+
+## 2.0.0
+
+### Major Changes
+
+- Saola AI
 
 ## 2.0.0-alpha.15
 

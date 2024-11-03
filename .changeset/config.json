@@ -1,33 +1,38 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "rrweb-io/rrweb" }],
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "rrweb-io/rrweb"
+    }
+  ],
   "commit": false,
   "fixed": [
     [
-      "rrweb",
-      "rrweb-snapshot",
-      "rrdom",
-      "rrdom-nodejs",
-      "rrweb-player",
-      "@rrweb/all",
-      "@rrweb/replay",
-      "@rrweb/record",
-      "@rrweb/types",
-      "@rrweb/packer",
-      "@rrweb/utils",
-      "@rrweb/web-extension",
-      "rrvideo",
-      "@rrweb/rrweb-plugin-console-record",
-      "@rrweb/rrweb-plugin-console-replay",
-      "@rrweb/rrweb-plugin-sequential-id-record",
-      "@rrweb/rrweb-plugin-sequential-id-replay",
-      "@rrweb/rrweb-plugin-canvas-webrtc-record",
-      "@rrweb/rrweb-plugin-canvas-webrtc-replay"
+      "@saola.ai/rrweb-all",
+      "@saola.ai/replay",
+      "@saola.ai/record",
+      "@saola.ai/rrweb-packer",
+      "@saola.ai/rrweb-utils",
+      "@saola.ai/rrweb-plugin-console-record",
+      "@saola.ai/rrweb-plugin-console-replay",
+      "@saola.ai/rrweb-plugin-sequential-id-record",
+      "@saola.ai/rrweb-plugin-sequential-id-replay",
+      "@saola.ai/rrweb-plugin-canvas-webrtc-record",
+      "@saola.ai/rrweb-plugin-canvas-webrtc-replay",
+      "@saola.ai/rrweb",
+      "@saola.ai/rrweb-snapshot",
+      "@saola.ai/rrdom",
+      "@saola.ai/rrdom-nodejs",
+      "@saola.ai/rrweb-player",
+      "@saola.ai/rrweb-types",
+      "@saola.ai/rrweb-web-extension",
+      "@saola.ai/rrvideo"
     ]
   ],
   "linked": [],
   "access": "public",
-  "baseBranch": "master",
+  "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []
 }

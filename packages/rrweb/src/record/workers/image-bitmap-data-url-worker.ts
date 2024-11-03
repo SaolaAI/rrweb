@@ -1,9 +1,9 @@
 import { encode } from 'base64-arraybuffer';
-import type { DataURLOptions } from 'rrweb-snapshot';
+import type { DataURLOptions } from '@saola.ai/rrweb-snapshot';
 import type {
   ImageBitmapDataURLWorkerParams,
   ImageBitmapDataURLWorkerResponse,
-} from '@rrweb/types';
+} from '@saola.ai/rrweb-types';
 
 const lastBlobMap: Map<number, string> = new Map();
 const transparentBlobMap: Map<string, string> = new Map();

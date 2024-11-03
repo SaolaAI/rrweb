@@ -10,7 +10,7 @@ import {
   type attributes,
   type serializedElementNodeWithId,
   toLowerCase,
-} from 'rrweb-snapshot';
+} from '@saola.ai/rrweb-snapshot';
 import {
   RRDocument,
   createOrGetNode,
@@ -18,7 +18,7 @@ import {
   buildFromDom,
   diff,
   getDefaultSN,
-} from 'rrdom';
+} from '@saola.ai/rrdom';
 import type {
   RRNode,
   RRElement,
@@ -28,7 +28,7 @@ import type {
   RRCanvasElement,
   ReplayerHandler,
   Mirror as RRDOMMirror,
-} from 'rrdom';
+} from '@saola.ai/rrdom';
 import * as mittProxy from 'mitt';
 import { polyfill as smoothscrollPolyfill } from './smoothscroll';
 import { Timer } from './timer';
@@ -44,7 +44,7 @@ import {
   IncrementalSource,
   MouseInteractions,
   ReplayerEvents,
-} from '@rrweb/types';
+} from '@saola.ai/rrweb-types';
 import type {
   fullSnapshotEvent,
   eventWithTime,
@@ -55,7 +55,6 @@ import type {
   incrementalData,
   Handler,
   Emitter,
-  metaEvent,
   mutationData,
   scrollData,
   inputData,
@@ -70,7 +69,7 @@ import type {
   styleSheetRuleData,
   styleDeclarationData,
   adoptedStyleSheetData,
-} from '@rrweb/types';
+} from '@saola.ai/rrweb-types';
 import {
   polyfill,
   queueToResolveTrees,
@@ -202,6 +201,7 @@ export class Replayer {
       mouseTail: defaultMouseTailConfig,
       useVirtualDom: true, // Virtual-dom optimization is enabled by default.
       logger: console,
+      removeAnimationCss: false,
     };
     this.config = Object.assign({}, defaultConfig, config);
 
@@ -396,7 +396,7 @@ export class Replayer {
       (e) => e.type === EventType.FullSnapshot,
     );
     if (firstMeta) {
-      const { width, height } = firstMeta.data as metaEvent['data'];
+      const { width, height } = firstMeta.data;
       setTimeout(() => {
         this.emitter.emit(ReplayerEvents.Resize, {
           width,
@@ -471,16 +471,29 @@ export class Replayer {
     }
   }
 
-  public getMetaData(): playerMetaData {
-    const firstEvent = this.service.state.context.events[0];
-    const lastEvent =
+  public getMetaData(rangeStart?: number, rangeEnd?: number): playerMetaData {
+    if (
+      this.service.state.context.rangeStart !== rangeStart ||
+      this.service.state.context.rangeEnd !== rangeEnd
+    ) {
+      this.service.send({
+        type: 'SET_RANGE',
+        payload: { start: rangeStart, end: rangeEnd },
+      });
+    }
+
+    const firstEventTimestamp =
+      rangeStart || this.service.state.context.events[0].timestamp;
+    const lastEventTimestamp =
+      rangeEnd ||
       this.service.state.context.events[
         this.service.state.context.events.length - 1
-      ];
+      ].timestamp;
+
     return {
-      startTime: firstEvent.timestamp,
-      endTime: lastEvent.timestamp,
-      totalTime: lastEvent.timestamp - firstEvent.timestamp,
+      startTime: firstEventTimestamp,
+      endTime: lastEventTimestamp,
+      totalTime: lastEventTimestamp - firstEventTimestamp,
     };
   }
 
@@ -503,6 +516,34 @@ export class Replayer {
     return this.mirror;
   }
 
+  public handleGoto(
+    timeOffset: number,
+    resumePlaying: boolean,
+    fromProgress: boolean,
+  ) {
+    if (fromProgress) {
+      this.emitter.emit(ReplayerEvents.GotoStarted);
+    }
+    const modifiedOffset = this.service.state.context.rangeStart
+      ? this.service.state.context.rangeStart -
+        this.service.state.context.events[0].timestamp +
+        timeOffset
+      : timeOffset;
+
+    const handle = () => {
+      if (resumePlaying) {
+        this.play(modifiedOffset);
+      } else {
+        this.pause(modifiedOffset);
+      }
+    };
+
+    if (fromProgress) {
+      // inside an immediate callback in order to release the thread, so the UI can render a loader
+      setTimeout(handle, 0);
+    } else handle();
+  }
+
   /**
    * This API was designed to be used as play at any time offset.
    * Since we minimized the data collected from recorder, we do not
@@ -514,10 +555,16 @@ export class Replayer {
    */
   public play(timeOffset = 0) {
     if (this.service.state.matches('paused')) {
-      this.service.send({ type: 'PLAY', payload: { timeOffset } });
+      this.service.send({
+        type: 'PLAY',
+        payload: { timeOffset },
+      });
     } else {
       this.service.send({ type: 'PAUSE' });
-      this.service.send({ type: 'PLAY', payload: { timeOffset } });
+      this.service.send({
+        type: 'PLAY',
+        payload: { timeOffset },
+      });
     }
     this.iframe.contentDocument
       ?.getElementsByTagName('html')[0]
@@ -556,7 +603,7 @@ export class Replayer {
     this.mirror.reset();
     this.styleMirror.reset();
     this.mediaManager.reset();
-    this.config.root.removeChild(this.wrapper);
+    // this.config.root.removeChild(this.wrapper);  - Leaving the DOM handling to React, causes issues with Vite's hot reloading
     this.emitter.emit(ReplayerEvents.Destroy);
   }
 
@@ -844,6 +891,7 @@ export class Replayer {
       afterAppend,
       cache: this.cache,
       mirror: this.mirror,
+      removeAnimationCss: this.config.removeAnimationCss,
     });
     afterAppend(this.iframe.contentDocument, event.data.node.id);
 
@@ -957,6 +1005,7 @@ export class Replayer {
       skipChild: false,
       afterAppend,
       cache: this.cache,
+      removeAnimationCss: this.config.removeAnimationCss,
     });
     afterAppend(iframeEl.contentDocument! as Document, mutation.node.id);
 
@@ -1560,6 +1609,7 @@ export class Replayer {
         skipChild: true,
         hackCss: true,
         cache: this.cache,
+        removeAnimationCss: this.config.removeAnimationCss,
         /**
          * caveat: `afterAppend` only gets called on child nodes of target
          * we have to call it again below when this target was added to the DOM
@@ -1802,6 +1852,7 @@ export class Replayer {
                     skipChild: true,
                     hackCss: true,
                     cache: this.cache,
+                    removeAnimationCss: this.config.removeAnimationCss,
                   });
                   const siblingNode = target.nextSibling;
                   const parentNode = target.parentNode;
@@ -1859,7 +1910,7 @@ export class Replayer {
                 const svp = styleValues[s] as styleValueWithPriority;
                 targetEl.style.setProperty(s, svp[0], svp[1]);
               } else {
-                const svs = styleValues[s] as string;
+                const svs = styleValues[s];
                 targetEl.style.setProperty(s, svs);
               }
             }
@@ -2092,7 +2143,7 @@ export class Replayer {
     const adoptStyleSheets = (targetHost: Node, styleIds: number[]) => {
       const stylesToAdopt = styleIds
         .map((styleId) => this.styleMirror.getStyle(styleId))
-        .filter((style) => style !== null) as CSSStyleSheet[];
+        .filter((style) => style !== null);
       if (hasShadowRoot(targetHost))
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         (targetHost as HTMLElement).shadowRoot!.adoptedStyleSheets =

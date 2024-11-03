@@ -8,11 +8,15 @@ import type {
   IWindow,
   DeprecatedMirror,
   textMutation,
-} from '@rrweb/types';
-import type { IMirror, Mirror, SlimDOMOptions } from 'rrweb-snapshot';
-import { isShadowRoot, IGNORED_NODE, classMatchesRegex } from 'rrweb-snapshot';
-import { RRNode, RRIFrameElement, BaseRRNode } from 'rrdom';
-import dom from '@rrweb/utils';
+} from '@saola.ai/rrweb-types';
+import type { IMirror, Mirror, SlimDOMOptions } from '@saola.ai/rrweb-snapshot';
+import {
+  isShadowRoot,
+  IGNORED_NODE,
+  classMatchesRegex,
+} from '@saola.ai/rrweb-snapshot';
+import { RRNode, RRIFrameElement, BaseRRNode } from '@saola.ai/rrdom';
+import dom from '@saola.ai/rrweb-utils';
 
 export function on(
   type: string,
@@ -31,7 +35,7 @@ const DEPARTED_MIRROR_ACCESS_WARNING =
   'now you can use replayer.getMirror() to access the mirror instance of a replayer,' +
   '\r\n' +
   'or you can use record.mirror to access the mirror instance during recording.';
-/** @deprecated */
+
 export let _mirror: DeprecatedMirror = {
   map: {},
   getId() {

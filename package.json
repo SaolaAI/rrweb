@@ -6,7 +6,9 @@
     "url": "git+ssh://git@github.com/rrweb-io/rrweb.git"
   },
   "keywords": [
-    "rrweb"
+    "rrweb",
+    "saola rrweb",
+    "saola ai"
   ],
   "author": "yanzhen@smartx.com",
   "license": "MIT",
@@ -59,7 +61,8 @@
   },
   "resolutions": {
     "**/cssom": "https://registry.npmjs.org/rrweb-cssom/-/rrweb-cssom-0.6.0.tgz",
-    "**/@types/dom-webcodecs": "0.1.5"
+    "**/@types/dom-webcodecs": "0.1.5",
+    "typescript": "^5.4.5"
   },
   "browserslist": [
     "defaults",

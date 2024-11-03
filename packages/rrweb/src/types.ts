@@ -5,11 +5,11 @@ import type {
   MaskInputFn,
   MaskTextFn,
   DataURLOptions,
-} from 'rrweb-snapshot';
+} from '@saola.ai/rrweb-snapshot';
 import type { IframeManager } from './record/iframe-manager';
 import type { ShadowDomManager } from './record/shadow-dom-manager';
 import type { Replayer } from './replay';
-import type { RRNode } from 'rrdom';
+import type { RRNode } from '@saola.ai/rrdom';
 import type { CanvasManager } from './record/observers/canvas/canvas-manager';
 import type { StylesheetManager } from './record/stylesheet-manager';
 import type {
@@ -38,7 +38,7 @@ import type {
   viewportResizeCallback,
   PackFn,
   UnpackFn,
-} from '@rrweb/types';
+} from '@saola.ai/rrweb-types';
 import type ProcessedNodeManager from './record/processed-node-manager';
 
 export type recordOptions<T> = {
@@ -196,6 +196,7 @@ export type playerConfig = {
     warn: (...args: Parameters<typeof console.warn>) => void;
   };
   plugins?: ReplayPlugin[];
+  removeAnimationCss: boolean;
 };
 
 export type missingNode = {

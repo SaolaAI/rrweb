@@ -10,7 +10,7 @@ import {
   createMirror,
   Mirror as NodeMirror,
   serializedNodeWithId,
-} from 'rrweb-snapshot';
+} from '@saola.ai/rrweb-snapshot';
 import {
   buildFromDom,
   getDefaultSN,
@@ -27,8 +27,11 @@ import {
   sameNodeType,
 } from '../src/diff';
 import type { IRRElement, IRRNode } from '../src/document';
-import type { canvasMutationData, styleSheetRuleData } from '@rrweb/types';
-import { EventType, IncrementalSource } from '@rrweb/types';
+import type {
+  canvasMutationData,
+  styleSheetRuleData,
+} from '@saola.ai/rrweb-types';
+import { EventType, IncrementalSource } from '@saola.ai/rrweb-types';
 
 const elementSn = {
   type: RRNodeType.Element,
