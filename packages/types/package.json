@@ -1,6 +1,6 @@
 {
   "name": "@saola.ai/rrweb-types",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "publishConfig": {
     "access": "public"
   },
@@ -50,7 +50,7 @@
     "vite-plugin-dts": "^3.9.1"
   },
   "dependencies": {
-    "@saola.ai/rrweb-snapshot": "^2.0.12"
+    "@saola.ai/rrweb-snapshot": "^2.0.13"
   },
   "browserslist": [
     "supports es6-class"

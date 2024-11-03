@@ -1,5 +1,14 @@
 # @rrweb/packer
 
+## 2.0.13
+
+### Patch Changes
+
+- Merge from rrweb remote upstream
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-types@2.0.13
+
 ## 2.0.0-alpha.17
 
 ### Patch Changes
@@ -8,6 +17,7 @@
 
 - Updated dependencies [[`335639a`](https://github.com/rrweb-io/rrweb/commit/335639af9b0ce7f70eb0f38ce113d877c7325158)]:
   - @rrweb/types@2.0.0-alpha.17
+
 ## 2.0.0
 
 ### Major Changes

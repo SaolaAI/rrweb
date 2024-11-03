@@ -1,5 +1,15 @@
 # rrdom-nodejs
 
+## 2.0.13
+
+### Patch Changes
+
+- Merge from rrweb remote upstream
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.13
+  - @saola.ai/rrdom@2.0.13
+
 ## 2.0.0-alpha.17
 
 ### Patch Changes
@@ -15,6 +25,7 @@
 - Updated dependencies [[`a2c8a1a`](https://github.com/rrweb-io/rrweb/commit/a2c8a1a37bfcf8389b280af792262c8263a979a3), [`d08624c`](https://github.com/rrweb-io/rrweb/commit/d08624cb28add386c3618a0e6607424c3f1884d8)]:
   - rrweb-snapshot@2.0.0-alpha.16
   - rrdom@2.0.0-alpha.16
+
 ## 2.0.12
 
 ### Patch Changes

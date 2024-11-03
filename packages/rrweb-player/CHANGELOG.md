@@ -1,5 +1,15 @@
 # rrweb-player
 
+## 2.0.13
+
+### Patch Changes
+
+- Merge from rrweb remote upstream
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-packer@2.0.13
+  - @saola.ai/replay@2.0.13
+
 ## 2.0.0-alpha.17
 
 ### Patch Changes
@@ -9,6 +19,7 @@
   - @rrweb/replay@2.0.0-alpha.17
 
 ## 2.0.0-alpha.16
+
 ## 2.0.12
 
 ### Patch Changes

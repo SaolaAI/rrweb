@@ -1,5 +1,11 @@
 # @rrweb/utils
 
+## 2.0.13
+
+### Patch Changes
+
+- Merge from rrweb remote upstream
+
 ## 2.0.0-alpha.17
 
 ### Patch Changes

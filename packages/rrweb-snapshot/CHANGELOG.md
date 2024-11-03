@@ -1,5 +1,11 @@
 # rrweb-snapshot
 
+## 2.0.13
+
+### Patch Changes
+
+- Merge from rrweb remote upstream
+
 ## 2.0.0-alpha.17
 
 ### Minor Changes
@@ -21,6 +27,7 @@
 - [#1386](https://github.com/rrweb-io/rrweb/pull/1386) [`a2c8a1a`](https://github.com/rrweb-io/rrweb/commit/a2c8a1a37bfcf8389b280af792262c8263a979a3) Thanks [@ababik](https://github.com/ababik)! - Fix that the optional `maskInputFn` was being accidentally ignored during the creation of the full snapshot
 
 - [#1512](https://github.com/rrweb-io/rrweb/pull/1512) [`d08624c`](https://github.com/rrweb-io/rrweb/commit/d08624cb28add386c3618a0e6607424c3f1884d8) Thanks [@eoghanmurray](https://github.com/eoghanmurray)! - optimisation: skip mask check on leaf elements
+
 ## 2.0.12
 
 ## 2.0.11

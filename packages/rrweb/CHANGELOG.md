@@ -1,5 +1,17 @@
 # rrweb
 
+## 2.0.13
+
+### Patch Changes
+
+- Merge from rrweb remote upstream
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.13
+  - @saola.ai/rrdom@2.0.13
+  - @saola.ai/rrweb-types@2.0.13
+  - @saola.ai/rrweb-utils@2.0.13
+
 ## 2.0.0-alpha.17
 
 ### Minor Changes
@@ -34,6 +46,7 @@
   - rrweb-snapshot@2.0.0-alpha.16
   - rrdom@2.0.0-alpha.16
   - @rrweb/types@2.0.0-alpha.16
+
 ## 2.0.12
 
 ### Patch Changes
