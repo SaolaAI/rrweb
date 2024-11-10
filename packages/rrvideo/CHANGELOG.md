@@ -1,5 +1,23 @@
 # rrvideo
 
+## 2.0.14
+
+### Patch Changes
+
+- Revert pull from remote - commit eb1fb6d60f4381ee87272bdceccdf6ad5297284f
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-player@2.0.14
+
+## 2.0.13
+
+### Patch Changes
+
+- Revert pull from remote - commit eb1fb6d60f4381ee87272bdceccdf6ad5297284f
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-player@2.0.13
+
 ## 2.0.12
 
 ### Patch Changes

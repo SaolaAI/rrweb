@@ -1,5 +1,27 @@
 # @rrweb/all
 
+## 2.0.2
+
+### Patch Changes
+
+- Revert pull from remote - commit eb1fb6d60f4381ee87272bdceccdf6ad5297284f
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-packer@2.0.2
+  - @saola.ai/rrweb@2.0.14
+  - @saola.ai/rrweb-types@2.0.14
+
+## 2.0.1
+
+### Patch Changes
+
+- Revert pull from remote - commit eb1fb6d60f4381ee87272bdceccdf6ad5297284f
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-packer@2.0.1
+  - @saola.ai/rrweb@2.0.13
+  - @saola.ai/rrweb-types@2.0.13
+
 ## 2.0.0
 
 ### Major Changes
