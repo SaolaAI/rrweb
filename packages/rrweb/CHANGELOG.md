@@ -1,5 +1,27 @@
 # rrweb
 
+## 2.0.14
+
+### Patch Changes
+
+- Revert pull from remote - commit eb1fb6d60f4381ee87272bdceccdf6ad5297284f
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.14
+  - @saola.ai/rrdom@2.0.14
+  - @saola.ai/rrweb-types@2.0.14
+
+## 2.0.13
+
+### Patch Changes
+
+- Revert pull from remote - commit eb1fb6d60f4381ee87272bdceccdf6ad5297284f
+
+- Updated dependencies []:
+  - @saola.ai/rrdom@2.0.13
+  - @saola.ai/rrweb-snapshot@2.0.13
+  - @saola.ai/rrweb-types@2.0.13
+
 ## 2.0.12
 
 ### Patch Changes
