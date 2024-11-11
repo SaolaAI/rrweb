@@ -6,7 +6,6 @@
     "prepare": "npm run prepack",
     "prepack": "npm run build",
     "retest": "vitest run --exclude test/benchmark",
-    "retest:headful": "vitest run --exclude test/benchmark",
     "build-and-test": "yarn build && yarn retest",
     "test:headless": "PUPPETEER_HEADLESS=true yarn build-and-test",
     "test:headful": "PUPPETEER_HEADLESS=false yarn build-and-test",

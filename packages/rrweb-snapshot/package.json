@@ -8,9 +8,7 @@
     "retest": "jest",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "retest:update": "vitest run --update",
     "test:update": "vitest run --update",
-    "bench": "vite build && vitest bench",
     "dev": "vite build --watch",
     "build": "yarn check-types && vite build",
     "check-types": "tsc --noEmit",
@@ -54,7 +52,6 @@
   },
   "homepage": "https://github.com/rrweb-io/rrweb/tree/master/packages/rrweb-snapshot#readme",
   "devDependencies": {
-    "@rrweb/utils": "^2.0.0-alpha.17",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^18.15.11",
     "@types/puppeteer": "^5.4.4",
