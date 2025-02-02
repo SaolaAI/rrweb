@@ -9,10 +9,10 @@ import {
   initScrollObserver,
   initAdoptedStyleSheetObserver,
 } from './observer';
-import { patch, inDom } from '../utils';
+import { inDom } from '../utils';
 import type { Mirror } from '@saola.ai/rrweb-snapshot';
 import { isNativeShadowDom } from '@saola.ai/rrweb-snapshot';
-import dom from '@saola.ai/rrweb-utils';
+import dom, { patch } from '@saola.ai/rrweb-utils';
 
 type BypassOptions = Omit<
   MutationBufferParam,

@@ -3,7 +3,7 @@ import type {
   RecordPlugin,
   IWindow,
 } from '@saola.ai/rrweb-types';
-import { utils } from '@saola.ai/rrweb';
+import { patch } from '@saola.ai/rrweb-utils';
 import { ErrorStackParser, StackFrame } from './error-stack-parser';
 import { stringify } from './stringify';
 
@@ -187,7 +187,7 @@ function initLogObserver(
       };
     }
     // replace the logger.{level}. return a restore function
-    return utils.patch(
+    return patch(
       _logger,
       level,
       (original: (...args: Array<unknown>) => void) => {

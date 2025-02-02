@@ -5,7 +5,8 @@ import {
   type IWindow,
   type listenerHandler,
 } from '@saola.ai/rrweb-types';
-import { hookSetter, isBlocked, patch } from '../../../utils';
+import { hookSetter, isBlocked } from '../../../utils';
+import { patch } from '@saola.ai/rrweb-utils';
 import { serializeArgs } from './serialize-args';
 
 export default function initCanvas2DMutationObserver(

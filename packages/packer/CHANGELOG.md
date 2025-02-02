@@ -1,5 +1,14 @@
 # @rrweb/packer
 
+## 2.0.20
+
+### Patch Changes
+
+- Remove console record's dependency on rrweb
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-types@2.0.20
+
 ## 2.0.19
 
 ### Patch Changes

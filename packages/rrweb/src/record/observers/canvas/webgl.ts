@@ -6,7 +6,8 @@ import {
   type IWindow,
   type listenerHandler,
 } from '@saola.ai/rrweb-types';
-import { hookSetter, isBlocked, patch } from '../../../utils';
+import { hookSetter, isBlocked } from '../../../utils';
+import { patch } from '@saola.ai/rrweb-utils';
 import { saveWebGLVar, serializeArgs } from './serialize-args';
 
 function patchGLPrototype(

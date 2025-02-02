@@ -1,5 +1,11 @@
 # @rrweb/utils
 
+## 2.0.20
+
+### Patch Changes
+
+- Remove console record's dependency on rrweb
+
 ## 2.0.19
 
 ### Patch Changes
