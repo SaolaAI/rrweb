@@ -1,6 +1,26 @@
 # rrvideo
 
+## 2.0.20
+
+### Patch Changes
+
+- Remove console record's dependency on rrweb
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-player@2.0.20
+
+## 2.0.19
+
+### Patch Changes
+
+- rebase rrweb from remote - jan 25
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-player@2.0.19
+
 ## 2.0.17
+
+## 2.0.0-alpha.18
 
 ### Patch Changes
 
@@ -44,6 +64,10 @@
 ## 2.0.0-alpha.17
 
 ## 2.0.12
+
+- rrweb-player@2.0.0-alpha.18
+
+## 2.0.0-alpha.17
 
 ### Patch Changes
 

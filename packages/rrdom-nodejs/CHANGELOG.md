@@ -1,5 +1,25 @@
 # rrdom-nodejs
 
+## 2.0.20
+
+### Patch Changes
+
+- Remove console record's dependency on rrweb
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.20
+  - @saola.ai/rrdom@2.0.20
+
+## 2.0.19
+
+### Patch Changes
+
+- rebase rrweb from remote - jan 25
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.19
+  - @saola.ai/rrdom@2.0.19
+
 ## 2.0.17
 
 ### Patch Changes
@@ -45,6 +65,16 @@
 - Updated dependencies []:
   - @saola.ai/rrweb-snapshot@2.0.13
   - @saola.ai/rrdom@2.0.13
+
+## 2.0.0-alpha.18
+
+### Patch Changes
+
+- [#1593](https://github.com/rrweb-io/rrweb/pull/1593) [`5a78938`](https://github.com/rrweb-io/rrweb/commit/5a789385a341311ba327a768fe0e2f0f2f5002ee) Thanks [@daibhin](https://github.com/daibhin)! - `NodeType` enum was moved from rrweb-snapshot to @rrweb/types
+  The following types where moved from rrweb-snapshot to @rrweb/types: `documentNode`, `documentTypeNode`, `legacyAttributes`, `textNode`, `cdataNode`, `commentNode`, `elementNode`, `serializedNode`, `serializedNodeWithId`, `serializedElementNodeWithId`, `serializedTextNodeWithId`, `IMirror`, `INode`, `mediaAttributes`, `attributes` and `DataURLOptions`
+- Updated dependencies [[`8e55c45`](https://github.com/rrweb-io/rrweb/commit/8e55c455ff2987a3b5f367f23f48c1f2de74ce45), [`5a78938`](https://github.com/rrweb-io/rrweb/commit/5a789385a341311ba327a768fe0e2f0f2f5002ee)]:
+  - rrdom@2.0.0-alpha.18
+  - @rrweb/types@2.0.0-alpha.18
 
 ## 2.0.0-alpha.17
 

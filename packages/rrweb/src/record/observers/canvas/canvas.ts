@@ -4,7 +4,8 @@ import type {
   IWindow,
   listenerHandler,
 } from '@saola.ai/rrweb-types';
-import { isBlocked, patch } from '../../../utils';
+import { isBlocked } from '../../../utils';
+import { patch } from '@saola.ai/rrweb-utils';
 
 function getNormalizedContextName(contextType: string) {
   return contextType === 'experimental-webgl' ? 'webgl' : contextType;

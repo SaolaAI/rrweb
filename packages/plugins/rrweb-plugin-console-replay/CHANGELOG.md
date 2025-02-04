@@ -1,5 +1,23 @@
 # @rrweb/rrweb-plugin-console-replay
 
+## 2.0.20
+
+### Patch Changes
+
+- Remove console record's dependency on rrweb
+
+- Updated dependencies []:
+  - @saola.ai/rrweb@2.0.20
+
+## 2.0.19
+
+### Patch Changes
+
+- rebase rrweb from remote - jan 25
+
+- Updated dependencies []:
+  - @saola.ai/rrweb@2.0.19
+
 ## 2.0.15
 
 ### Patch Changes
@@ -26,6 +44,13 @@
 
 - Updated dependencies []:
   - @saola.ai/rrweb@2.0.13
+
+## 2.0.0-alpha.18
+
+### Patch Changes
+
+- Updated dependencies [[`04ee6ed`](https://github.com/rrweb-io/rrweb/commit/04ee6eda57157f0e04f18f907d8f3e59ababc753), [`5fbb904`](https://github.com/rrweb-io/rrweb/commit/5fbb904edb653f3da17e6775ee438d81ef0bba83), [`5a78938`](https://github.com/rrweb-io/rrweb/commit/5a789385a341311ba327a768fe0e2f0f2f5002ee), [`53b83bb`](https://github.com/rrweb-io/rrweb/commit/53b83bb037f9cb30c93179548f436ed776f143ab)]:
+  - rrweb@2.0.0-alpha.18
 
 ## 2.0.0-alpha.17
 

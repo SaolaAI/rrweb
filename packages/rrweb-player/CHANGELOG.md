@@ -1,5 +1,25 @@
 # rrweb-player
 
+## 2.0.20
+
+### Patch Changes
+
+- Remove console record's dependency on rrweb
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-packer@2.0.20
+  - @saola.ai/replay@2.0.20
+
+## 2.0.19
+
+### Patch Changes
+
+- rebase rrweb from remote - jan 25
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-packer@2.0.19
+  - @saola.ai/replay@2.0.19
+
 ## 2.0.17
 
 ## 2.0.16
@@ -33,6 +53,14 @@
 - Updated dependencies []:
   - @saola.ai/rrweb-packer@2.0.13
   - @saola.ai/replay@2.0.13
+
+## 2.0.0-alpha.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @rrweb/replay@2.0.0-alpha.18
+  - @rrweb/packer@2.0.0-alpha.18
 
 ## 2.0.0-alpha.17
 
