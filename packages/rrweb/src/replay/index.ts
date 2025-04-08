@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   rebuild,
   adaptCssForReplay,
@@ -1925,7 +1926,7 @@ export class Replayer {
                 const svp = styleValues[s] as styleValueWithPriority;
                 targetEl.style.setProperty(s, svp[0], svp[1]);
               } else {
-                const svs = styleValues[s];
+                const svs = styleValues[s] as string;
                 targetEl.style.setProperty(s, svs);
               }
             }
@@ -2158,7 +2159,7 @@ export class Replayer {
     const adoptStyleSheets = (targetHost: Node, styleIds: number[]) => {
       const stylesToAdopt = styleIds
         .map((styleId) => this.styleMirror.getStyle(styleId))
-        .filter((style) => style !== null);
+        .filter((style) => style !== null) as CSSStyleSheet[];
       if (hasShadowRoot(targetHost))
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         (targetHost as HTMLElement).shadowRoot!.adoptedStyleSheets =

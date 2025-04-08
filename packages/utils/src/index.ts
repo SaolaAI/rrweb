@@ -278,4 +278,5 @@ export default {
   querySelector,
   querySelectorAll,
   mutationObserver: mutationObserverCtor,
+  patch,
 };
