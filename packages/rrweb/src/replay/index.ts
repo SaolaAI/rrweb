@@ -473,16 +473,29 @@ export class Replayer {
     }
   }
 
-  public getMetaData(): playerMetaData {
-    const firstEvent = this.service.state.context.events[0];
-    const lastEvent =
+  public getMetaData(rangeStart?: number, rangeEnd?: number): playerMetaData {
+    if (
+      this.service.state.context.rangeStart !== rangeStart ||
+      this.service.state.context.rangeEnd !== rangeEnd
+    ) {
+      this.service.send({
+        type: 'SET_RANGE',
+        payload: { start: rangeStart, end: rangeEnd },
+      });
+    }
+
+    const firstEventTimestamp =
+      rangeStart || this.service.state.context.events[0].timestamp;
+    const lastEventTimestamp =
+      rangeEnd ||
       this.service.state.context.events[
         this.service.state.context.events.length - 1
-      ];
+      ].timestamp;
+
     return {
-      startTime: firstEvent.timestamp,
-      endTime: lastEvent.timestamp,
-      totalTime: lastEvent.timestamp - firstEvent.timestamp,
+      startTime: firstEventTimestamp,
+      endTime: lastEventTimestamp,
+      totalTime: lastEventTimestamp - firstEventTimestamp,
     };
   }
 
@@ -505,6 +518,34 @@ export class Replayer {
     return this.mirror;
   }
 
+  public handleGoto(
+    timeOffset: number,
+    resumePlaying: boolean,
+    fromProgress: boolean,
+  ) {
+    if (fromProgress) {
+      this.emitter.emit(ReplayerEvents.GotoStarted);
+    }
+    const modifiedOffset = this.service.state.context.rangeStart
+      ? this.service.state.context.rangeStart -
+        this.service.state.context.events[0].timestamp +
+        timeOffset
+      : timeOffset;
+
+    const handle = () => {
+      if (resumePlaying) {
+        this.play(modifiedOffset);
+      } else {
+        this.pause(modifiedOffset);
+      }
+    };
+
+    if (fromProgress) {
+      // inside an immediate callback in order to release the thread, so the UI can render a loader
+      setTimeout(handle, 0);
+    } else handle();
+  }
+
   /**
    * This API was designed to be used as play at any time offset.
    * Since we minimized the data collected from recorder, we do not
@@ -516,10 +557,16 @@ export class Replayer {
    */
   public play(timeOffset = 0) {
     if (this.service.state.matches('paused')) {
-      this.service.send({ type: 'PLAY', payload: { timeOffset } });
+      this.service.send({
+        type: 'PLAY',
+        payload: { timeOffset },
+      });
     } else {
       this.service.send({ type: 'PAUSE' });
-      this.service.send({ type: 'PLAY', payload: { timeOffset } });
+      this.service.send({
+        type: 'PLAY',
+        payload: { timeOffset },
+      });
     }
     this.iframe.contentDocument
       ?.getElementsByTagName('html')[0]
@@ -558,7 +605,7 @@ export class Replayer {
     this.mirror.reset();
     this.styleMirror.reset();
     this.mediaManager.reset();
-    this.config.root.removeChild(this.wrapper);
+    // this.config.root.removeChild(this.wrapper);  - Leaving the DOM handling to React, causes issues with Vite's hot reloading
     this.emitter.emit(ReplayerEvents.Destroy);
   }
 
@@ -1564,12 +1611,12 @@ export class Replayer {
         skipChild: true,
         hackCss: true,
         cache: this.cache,
+        removeAnimationCss: this.config.removeAnimationCss,
         /**
          * caveat: `afterAppend` only gets called on child nodes of target
          * we have to call it again below when this target was added to the DOM
          */
         afterAppend,
-        removeAnimationCss: this.config.removeAnimationCss,
       }) as Node | RRNode;
 
       // legacy data, we should not have -1 siblings any more
