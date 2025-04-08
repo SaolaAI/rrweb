@@ -1,5 +1,14 @@
 # @rrweb/rrweb-plugin-sequential-id-replay
 
+## 2.0.21
+
+### Patch Changes
+
+- rebase rrweb remote - april 8th 2025
+
+- Updated dependencies []:
+  - @saola.ai/rrweb@2.0.21
+
 ## 2.0.20
 
 ### Patch Changes

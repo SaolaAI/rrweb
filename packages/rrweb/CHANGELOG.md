@@ -1,5 +1,17 @@
 # rrweb
 
+## 2.0.21
+
+### Patch Changes
+
+- rebase rrweb remote - april 8th 2025
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.21
+  - @saola.ai/rrdom@2.0.21
+  - @saola.ai/rrweb-utils@2.0.21
+  - @saola.ai/rrweb-types@2.0.21
+
 ## 2.0.20
 
 ### Patch Changes
