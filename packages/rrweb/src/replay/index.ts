@@ -528,8 +528,8 @@ export class Replayer {
     }
     const modifiedOffset = this.service.state.context.rangeStart
       ? this.service.state.context.rangeStart -
-        this.service.state.context.events[0].timestamp +
-        timeOffset
+      this.service.state.context.events[0].timestamp +
+      timeOffset
       : timeOffset;
 
     const handle = () => {
@@ -772,7 +772,7 @@ export class Replayer {
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   _event.delay! - event.delay! >
                   this.config.inactivePeriodThreshold *
-                    this.speedService.state.context.timer.speed
+                  this.speedService.state.context.timer.speed
                 ) {
                   this.nextUserInteractionEvent = _event;
                 }
@@ -1525,7 +1525,7 @@ export class Replayer {
     const legacy_missingNodeMap: missingNodeMap = {
       ...this.legacy_missingNodeRetryMap,
     };
-    const queue: addedNodeMutation[] = [];
+    const legacy_queue: addedNodeMutation[] = [];
 
     // next not present at this moment
     const nextNotInDOM = (mutation: addedNodeMutation) => {
@@ -1557,7 +1557,7 @@ export class Replayer {
           // is newly added document, maybe the document node of an iframe
           return this.newDocumentQueue.push(mutation);
         }
-        return queue.push(mutation);
+        return legacy_queue.push(mutation);
       }
 
       if (mutation.node.isShadow) {
@@ -1577,7 +1577,7 @@ export class Replayer {
         next = mirror.getNode(mutation.nextId);
       }
       if (nextNotInDOM(mutation)) {
-        return queue.push(mutation);
+        return legacy_queue.push(mutation);
       }
 
       if (mutation.node.rootId && !mirror.getNode(mutation.node.rootId)) {
@@ -1587,8 +1587,8 @@ export class Replayer {
       const targetDoc = mutation.node.rootId
         ? mirror.getNode(mutation.node.rootId)
         : this.usingVirtualDom
-        ? this.virtualDom
-        : this.iframe.contentDocument;
+          ? this.virtualDom
+          : this.iframe.contentDocument;
       if (isSerializedIframe<typeof parent>(parent, mirror)) {
         this.attachDocumentToIframe(
           mutation,
@@ -1760,11 +1760,11 @@ export class Replayer {
     });
 
     const startTime = Date.now();
-    while (queue.length) {
-      // transform queue to resolve tree
-      const resolveTrees = queueToResolveTrees(queue);
-      queue.length = 0;
-      if (Date.now() - startTime > 500) {
+    while (legacy_queue.length) {
+      // transform legacy_queue to resolve tree
+      const resolveTrees = queueToResolveTrees(legacy_queue);
+      legacy_queue.length = 0;
+      if (Date.now() - startTime > 200) {
         this.warn(
           'Timeout in the loop, please check the resolve tree data:',
           resolveTrees,
