@@ -1,5 +1,17 @@
 # rrweb
 
+## 2.0.23
+
+### Patch Changes
+
+- Disable worker inlining - specific version for chrome extension
+
+- Updated dependencies []:
+  - @saola.ai/rrdom@2.0.23
+  - @saola.ai/rrweb-snapshot@2.0.23
+  - @saola.ai/rrweb-types@2.0.23
+  - @saola.ai/rrweb-utils@2.0.23
+
 ## 2.0.22
 
 ### Patch Changes

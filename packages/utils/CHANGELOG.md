@@ -1,5 +1,11 @@
 # @rrweb/utils
 
+## 2.0.23
+
+### Patch Changes
+
+- Disable worker inlining - specific version for chrome extension
+
 ## 2.0.22
 
 ### Patch Changes

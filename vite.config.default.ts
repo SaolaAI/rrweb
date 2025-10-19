@@ -14,7 +14,7 @@ const emptyOutDir = !process.argv.includes('--watch');
  * Chrome web store does not allow base64 inline workers.
  * For chrome extension, we need to disable worker inlining to pass the review.
  */
-const disableWorkerInlining = process.env.DISABLE_WORKER_INLINING === 'true';
+const disableWorkerInlining = true; // process.env.DISABLE_WORKER_INLINING === 'true';
 
 function minifyAndUMDPlugin({
   name,
