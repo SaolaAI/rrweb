@@ -3,7 +3,7 @@ import {
   slimDOMDefaults,
   type MaskInputOptions,
   createMirror,
-} from 'rrweb-snapshot';
+} from '@saola.ai/rrweb-snapshot';
 import { initObservers, mutationBuffers } from './observer';
 import {
   on,
