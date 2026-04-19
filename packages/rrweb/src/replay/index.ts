@@ -1803,15 +1803,11 @@ export class Replayer {
       const parentEl = target.parentElement as Element | RRElement;
       if (mutation.value && parentEl && parentEl.tagName === 'STYLE') {
         // assumes hackCss: true (which isn't currently configurable from rrweb)
-<<<<<<< HEAD
         target.textContent = adaptCssForReplay(
           mutation.value,
           this.cache,
           this.config.removeAnimationCss,
         );
-=======
-        target.textContent = adaptCssForReplay(mutation.value, this.cache);
->>>>>>> upstream/master
       } else {
         target.textContent = mutation.value;
       }
@@ -1866,10 +1862,7 @@ export class Replayer {
                       skipChild: true,
                       hackCss: true,
                       cache: this.cache,
-<<<<<<< HEAD
                       removeAnimationCss: this.config.removeAnimationCss,
-=======
->>>>>>> upstream/master
                     },
                   );
                   // Update mirror meta's attributes
