@@ -1,9 +1,9 @@
 import {
   snapshot,
+  slimDOMDefaults,
   type MaskInputOptions,
-  type slimDOMDefaults,
   createMirror,
-} from '@saola.ai/rrweb-snapshot';
+} from 'rrweb-snapshot';
 import { initObservers, mutationBuffers } from './observer';
 import {
   on,
