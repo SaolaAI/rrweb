@@ -33,11 +33,11 @@
     ".": {
       "import": {
         "types": "./dist/index.d.ts",
-        "default": "./dist/utils.js"
+        "default": "./dist/rrweb-utils.js"
       },
       "require": {
         "types": "./dist/index.d.cts",
-        "default": "./dist/utils.umd.cjs"
+        "default": "./dist/rrweb-utils.umd.cjs"
       }
     }
   },
