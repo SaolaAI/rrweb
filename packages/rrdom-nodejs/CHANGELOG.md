@@ -1,5 +1,13 @@
 # rrdom-nodejs
 
+## 2.0.28
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.28
+  - @saola.ai/rrdom@2.0.28
+
 ## 2.0.27
 
 ### Patch Changes
@@ -359,7 +367,6 @@
 ### Major Changes
 
 - [#1127](https://github.com/rrweb-io/rrweb/pull/1127) [`3cc4323`](https://github.com/rrweb-io/rrweb/commit/3cc4323094065a12f8b65afecd45061d604e245f) Thanks [@YunFeng0817](https://github.com/YunFeng0817)! - Refactor: Improve performance by 80% in a super large benchmark case.
-
   1. Refactor: change the data structure of childNodes from array to linked list
   2. Improve the performance of the "contains" function. New algorithm will reduce the complexity from O(n) to O(logn)
 

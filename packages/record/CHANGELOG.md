@@ -1,5 +1,14 @@
 # @rrweb/record
 
+## 2.0.28
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-utils@2.0.28
+  - @saola.ai/rrweb@2.0.28
+  - @saola.ai/rrweb-types@2.0.28
+
 ## 2.0.27
 
 ### Patch Changes

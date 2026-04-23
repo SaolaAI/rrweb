@@ -65,6 +65,12 @@ export default config(path.resolve(__dirname, 'src/main.ts'), 'rrwebPlayer', {
     viteSvelteDts(),
     svelte({
       preprocess: [sveltePreprocess({ typescript: true })],
+      compilerOptions: {
+        // Enable Svelte 4 compatibility mode for component API
+        compatibility: {
+          componentApi: 4,
+        },
+      },
     }),
   ],
 });
