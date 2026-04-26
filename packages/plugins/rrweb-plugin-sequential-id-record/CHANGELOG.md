@@ -1,5 +1,12 @@
 # @rrweb/rrweb-plugin-sequential-id-record
 
+## 2.0.28
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb@2.0.28
+
 ## 2.0.27
 
 ### Patch Changes

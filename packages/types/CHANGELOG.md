@@ -1,5 +1,7 @@
 # @rrweb/types
 
+## 2.0.28
+
 ## 2.0.27
 
 ## 2.0.26
@@ -256,7 +258,6 @@
 ### Patch Changes
 
 - [#1268](https://github.com/rrweb-io/rrweb/pull/1268) [`d872d28`](https://github.com/rrweb-io/rrweb/commit/d872d2809e3ec8d6ff5d3d5f43bc81aff70e7548) Thanks [@eoghanmurray](https://github.com/eoghanmurray)! - Compact style mutation fixes and improvements
-
   - fixes when style updates contain a 'var()' on a shorthand property #1246
   - further ensures that style mutations are compact by reverting to string method if it is shorter
 

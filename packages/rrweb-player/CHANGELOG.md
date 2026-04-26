@@ -1,5 +1,15 @@
 # rrweb-player
 
+## 2.0.28
+
+### Patch Changes
+
+- Upgraded svelte & vite
+
+- Updated dependencies []:
+  - @saola.ai/replay@2.0.28
+  - @saola.ai/rrweb-packer@2.0.28
+
 ## 2.0.27
 
 ### Patch Changes
