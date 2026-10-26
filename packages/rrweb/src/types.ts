@@ -65,6 +65,13 @@ export type recordOptions<T> = {
   recordDOM?: boolean;
   recordCanvas?: boolean;
   recordCrossOriginIframes?: boolean;
+  /**
+   * Value for the optional `source` field on cross-origin iframe messages posted to the parent.
+   * Some hosts treat any unknown `message` event as a payment-provider callback, but skip
+   * messages whose `data.source` contains "react" (React DevTools filter); a value like
+   * "saola-sdk-react-bridge" lets rrweb traffic pass such filters. Omitted when unset.
+   */
+  crossOriginMessageSource?: string;
   recordAfter?: 'DOMContentLoaded' | 'load';
   userTriggeredOnInput?: boolean;
   collectFonts?: boolean;
@@ -216,6 +223,8 @@ declare global {
 
 export type CrossOriginIframeMessageEventContent<T = eventWithTime> = {
   type: 'rrweb';
+  // Optional marker, see recordOptions.crossOriginMessageSource.
+  source?: string;
   event: T;
   // The origin of the iframe which originally emits this message. It is used to check the integrity of message and to filter out the rrweb messages which are forwarded by some sites.
   origin: string;

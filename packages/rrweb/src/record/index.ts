@@ -89,6 +89,7 @@ function record<T = eventWithTime>(
     recordDOM = true,
     recordCanvas = false,
     recordCrossOriginIframes = false,
+    crossOriginMessageSource,
     recordAfter = options.recordAfter === 'DOMContentLoaded'
       ? options.recordAfter
       : 'load',
@@ -203,6 +204,7 @@ function record<T = eventWithTime>(
     } else if (passEmitsToParent) {
       const message: CrossOriginIframeMessageEventContent<T> = {
         type: 'rrweb',
+        ...(crossOriginMessageSource ? { source: crossOriginMessageSource } : {}),
         event: eventProcessor(e),
         origin: window.location.origin,
         isCheckout,
