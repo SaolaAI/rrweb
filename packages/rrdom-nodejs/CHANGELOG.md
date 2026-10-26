@@ -1,5 +1,13 @@
 # rrdom-nodejs
 
+## 2.0.29
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-snapshot@2.0.29
+  - @saola.ai/rrdom@2.0.29
+
 ## 2.0.28
 
 ### Patch Changes
