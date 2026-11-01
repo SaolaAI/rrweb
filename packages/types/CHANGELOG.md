@@ -1,5 +1,11 @@
 # @rrweb/types
 
+## 2.0.30
+
+### Patch Changes
+
+- Added mask attributes
+
 ## 2.0.29
 
 ## 2.0.28

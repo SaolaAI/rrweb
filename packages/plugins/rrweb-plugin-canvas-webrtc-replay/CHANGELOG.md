@@ -1,5 +1,14 @@
 # @rrweb/rrweb-plugin-canvas-webrtc-replay
 
+## 2.0.30
+
+### Patch Changes
+
+- Added mask attributes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb@2.0.30
+
 ## 2.0.29
 
 ### Patch Changes

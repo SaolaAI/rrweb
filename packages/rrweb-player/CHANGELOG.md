@@ -1,5 +1,15 @@
 # rrweb-player
 
+## 2.0.30
+
+### Patch Changes
+
+- Added mask attributes
+
+- Updated dependencies []:
+  - @saola.ai/rrweb-packer@2.0.30
+  - @saola.ai/replay@2.0.30
+
 ## 2.0.29
 
 ### Patch Changes

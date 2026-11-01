@@ -1,5 +1,17 @@
 # rrweb
 
+## 2.0.30
+
+### Patch Changes
+
+- Added mask attributes
+
+- Updated dependencies []:
+  - @saola.ai/rrdom@2.0.30
+  - @saola.ai/rrweb-snapshot@2.0.30
+  - @saola.ai/rrweb-types@2.0.30
+  - @saola.ai/rrweb-utils@2.0.30
+
 ## 2.0.29
 
 ### Patch Changes
