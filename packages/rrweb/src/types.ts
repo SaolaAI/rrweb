@@ -2,6 +2,7 @@ import type {
   Mirror,
   MaskInputOptions,
   SlimDOMOptions,
+  MaskAttributeFn,
   MaskInputFn,
   MaskTextFn,
 } from '@saola.ai/rrweb-snapshot';
@@ -55,6 +56,18 @@ export type recordOptions<T> = {
   maskInputOptions?: MaskInputOptions;
   maskInputFn?: MaskInputFn;
   maskTextFn?: MaskTextFn;
+  /**
+   * Client callback applied to attribute values on all elements.
+   * Only attribute names listed in `maskAttributeNames` are passed through;
+   * other attributes are never sent to this function.
+   */
+  maskAttributeFn?: MaskAttributeFn;
+  /**
+   * Attribute names eligible for `maskAttributeFn`. Supports a trailing `*`
+   * as a prefix wildcard (e.g. `data-*`). Attributes not listed are never masked.
+   * Unset by default — without a list (or without the fn), attributes are not masked.
+   */
+  maskAttributeNames?: string[];
   slimDOMOptions?: SlimDOMOptions | 'all' | true;
   ignoreCSSAttributes?: Set<string>;
   inlineStylesheet?: boolean;
@@ -101,6 +114,8 @@ export type observerParam = {
   maskInputOptions: MaskInputOptions;
   maskInputFn?: MaskInputFn;
   maskTextFn?: MaskTextFn;
+  maskAttributeFn?: MaskAttributeFn;
+  maskAttributeNames?: string[];
   keepIframeSrcFn: KeepIframeSrcFn;
   inlineStylesheet: boolean;
   styleSheetRuleCb: styleSheetRuleCallback;
@@ -146,6 +161,8 @@ export type MutationBufferParam = Pick<
   | 'maskInputOptions'
   | 'maskTextFn'
   | 'maskInputFn'
+  | 'maskAttributeFn'
+  | 'maskAttributeNames'
   | 'keepIframeSrcFn'
   | 'recordCanvas'
   | 'inlineImages'
